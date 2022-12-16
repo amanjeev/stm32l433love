@@ -8,8 +8,8 @@ use embassy_stm32::adc::Adc;
 use embassy_stm32::adc::AdcPin;
 use embassy_stm32::adc::Resolution;
 use embassy_stm32::adc::Temperature;
-use embassy_stm32::pac::GPIO;
 use embassy_stm32::pac::adc;
+use embassy_stm32::pac::GPIO;
 use embassy_time::Delay;
 use {defmt_rtt as _, panic_probe as _};
 
@@ -22,10 +22,10 @@ async fn main(_spawner: Spawner) {
     myadc.enable_vbat();
     let channel = p.PA0;
     // let internal = myadc.read
-
+    defmt::info!("helloooooooooooo");
     loop {
-        info!("let there be light");
+        defmt::info!("let there be light");
         let v = myadc.read(&mut Temperature);
-        info!("temp u16 is: {}", v);
+        defmt::info!("temp u16 is: {}", v);
     }
 }
