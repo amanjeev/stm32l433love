@@ -36,6 +36,8 @@ async fn main(_spawner: Spawner) -> ! {
     loop {
         // defmt::println!("let there be light");
         let v = myadc.read(&mut channel);
-        defmt::println!("temp u16 is: {}", v);
+        // defmt::println!("temp u16 is: {}", v);
+        let temp = ((v as f32) * ((125.0 - (-40.0)) / 256.0)) + 30.0;
+        defmt::println!("Temperature is: {}", temp);
     }
 }
