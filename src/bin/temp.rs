@@ -2,14 +2,14 @@
 #![no_main]
 #![feature(type_alias_impl_trait)]
 
-use defmt::*;
+
 use embassy_executor::Spawner;
 use embassy_stm32::adc::Adc;
 use embassy_stm32::adc::Resolution;
-use embassy_stm32::adc::Temperature;
+
 use embassy_stm32::pac;
-use embassy_stm32::pac::adc;
-use embassy_stm32::pac::GPIO;
+
+
 use embassy_time::Delay;
 use {defmt_rtt as _, panic_probe as _};
 
@@ -23,10 +23,10 @@ async fn main(_spawner: Spawner) -> ! {
         pac::RCC.ahb2enr().modify(|w| w.set_adcen(true));
     }
 
-    let mut p = embassy_stm32::init(Default::default());
+    let p = embassy_stm32::init(Default::default());
     let mut myadc = Adc::new(p.ADC1, &mut Delay);
 
-    let t = myadc.enable_temperature();
+    let _t = myadc.enable_temperature();
 
     myadc.set_resolution(Resolution::EightBit);
 
